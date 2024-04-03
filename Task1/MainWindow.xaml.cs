@@ -6,12 +6,12 @@ namespace Task1
 {
     public partial class MainWindow : Window
     {
-        private LinkedList myList;
+        private LinkedList<string> myList;
 
         public MainWindow()
         {
             InitializeComponent();
-            myList = new LinkedList();
+            myList = new LinkedList<string>();
             UpdateDisplay();
         }
 
@@ -22,15 +22,15 @@ namespace Task1
             var currentNode = myList.Head;
             while (currentNode != null)
             {
-                listBox.Items.Add(currentNode.Data);
-                currentNode = currentNode.Next;
+                listBox.Items.Add(currentNode.data);
+                currentNode = currentNode.next;
             }
         }
 
         private void btnAppend_Click(object sender, RoutedEventArgs e)
         {
             string newItem = txtInput.Text;
-            myList.Append(newItem);
+            myList.append(newItem);
             UpdateDisplay();
         }
 
@@ -42,7 +42,7 @@ namespace Task1
             {
                 try
                 {
-                    myList.Insert(newItem, index);
+                    myList.insert(newItem, index);
                     UpdateDisplay();
                 }
                 catch (IndexOutOfRangeException ex)
@@ -63,7 +63,7 @@ namespace Task1
             {
                 try
                 {
-                    myList.Remove(index);
+                    myList.remove(index);
                     UpdateDisplay();
                 }
                 catch (IndexOutOfRangeException ex)
@@ -79,7 +79,7 @@ namespace Task1
 
         private void btnClear_Click(object sender, RoutedEventArgs e)
         {
-            myList.Clear();
+            myList.clear();
             UpdateDisplay();
         }
     }

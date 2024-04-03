@@ -2,79 +2,89 @@
 
 namespace Task1.models
 {
-    public class LinkedList : IList
+    public class LinkedList<T> : IList<T>
     {
-        public ListNode Head { get; set; }
-        public ListNode Tail { get; set; }
+        private ListNode<T> head { get; set; }
+        private ListNode<T> tail { get; set; }
+
+        private int length = 0;
 
         public LinkedList()
         {
-            Head = null;
-            Tail = null;
+            head = null;
+            tail = null;
         }
 
-        public string First => IsEmpty ? "" : Head.Data;
+        public ListNode<T> Head
+        {
+            get { return head; }
+            set { head = value; }
+        }
 
-        public string Last => IsEmpty ? "" : Tail.Data;
+        public ListNode<T> Tail
+        {
+            get { return tail; }
+            set { tail = value; }
+        }
 
-        public bool IsEmpty => Head == null;
+        public bool isEmpty()
+        {
+            return head == null;
+        }
 
-        private int length = 0;
-        public int Length => length;
-
-        public void Append(string value)
+        public void append(T value)
         {
 
-            var newNode = new ListNode(value);
+            var newNode = new ListNode<T>(value);
 
-            if (IsEmpty)
+            if (isEmpty())
             {
-                Head = newNode;
-                Tail = newNode;
+                head = newNode;
+                tail = newNode;
             }
             else
             {
-                Tail.Next = newNode;
-                Tail = newNode;
+                tail.next = newNode;
+                tail = newNode;
             }
 
             length++;
 
         }
 
-        public void Clear()
+        public void clear()
         {
-            Head = null;
-            Tail = null;
+            head = null;
+            tail = null;
 
             length = 0;
         }
 
-        public string Get(int index)
+        public T get(int index)
         {
             if (index < 0 || index >= length)
             {
                 throw new IndexOutOfRangeException();
             }
 
-            var currentNode = Head;
+            var currentNode = head;
             int currentIndex = 0;
 
             while (currentNode != null)
             {
                 if (currentIndex == index)
                 {
-                    return currentNode.Data;
+                    return currentNode.data;
                 }
 
-                currentNode = currentNode.Next;
+                currentNode = currentNode.next;
                 currentIndex++;
             }
 
-            return "";
+            return default(T);
         }
 
-        public void Insert(string value, int index)
+        public void insert(T value, int index)
         {
 
             if (index < 0 || index > length)
@@ -84,54 +94,54 @@ namespace Task1.models
 
             if (index == 0)
             {
-                Prepend(value);
+                prepend(value);
             }
 
-            var currentNode = Head;
+            var currentNode = head;
             int currentIndex = 0;
 
             while (currentNode != null)
             {
                 if (currentIndex == index - 1)
                 {
-                    var newNode = new ListNode(value);
-                    newNode.Next = currentNode.Next;
-                    currentNode.Next = newNode;
+                    var newNode = new ListNode<T>(value);
+                    newNode.next = currentNode.next;
+                    currentNode.next = newNode;
 
-                    if (currentNode == Tail)
+                    if (currentNode == tail)
                     {
-                        Tail = newNode;
+                        tail = newNode;
                     }
 
                     length++;
                 }
 
-                currentNode = currentNode.Next;
+                currentNode = currentNode.next;
                 currentIndex++;
             }
 
 
         }
 
-        public void Prepend(string value)
+        public void prepend(T value)
         {
-            var newNode = new ListNode(value);
+            var newNode = new ListNode<T>(value);
 
-            if (IsEmpty)
+            if (isEmpty())
             {
-                Head = newNode;
-                Tail = newNode;
+                head = newNode;
+                tail = newNode;
             }
             else
             {
-                newNode.Next = Head;
-                Head = newNode;
+                newNode.next = head;
+                head = newNode;
             }
 
             length++;
         }
 
-        public void Remove(int index)
+        public void remove(int index)
         {
             if (index < 0 || index >= length)
             {
@@ -140,54 +150,34 @@ namespace Task1.models
 
             if (index == 0)
             {
-                Head = Head.Next;
-                if (Head == null)
+                head = head.next;
+                if (head == null)
                 {
-                    Tail = null;
+                    tail = null;
                 }
             }
             else
             {
-                var currentNode = Head;
+                var currentNode = head;
                 int currentIndex = 0;
 
                 while (currentNode != null && currentIndex < index - 1)
                 {
-                    currentNode = currentNode.Next;
+                    currentNode = currentNode.next;
                     currentIndex++;
                 }
 
-                var nodeToRemove = currentNode.Next;
+                var nodeToRemove = currentNode.next;
 
-                currentNode.Next = nodeToRemove.Next;
+                currentNode.next = nodeToRemove.next;
 
-                if (nodeToRemove == Tail)
+                if (nodeToRemove == tail)
                 {
-                    Tail = currentNode;
+                    tail = currentNode;
                 }
             }
 
             length--;
         }
-
-        public override string ToString()
-        {
-            string result = "[";
-
-            for (var currentNode = Head; currentNode != null; currentNode = currentNode.Next)
-            {
-                result += currentNode.ToString();
-                if (currentNode != Tail)
-                {
-                    result += ", ";
-                }
-
-            }
-            result += "]";
-
-            return result;
-
-        }
-
     }
 }

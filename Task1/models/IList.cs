@@ -1,16 +1,16 @@
 ﻿namespace Task1.models
 {
-    public interface IList
+    public interface IList<T>
     {
-        string Get(int index);
+        T get(int index);
 
-        void Append(string value);
-        void Prepend(string value);
+        void append(T value);
+        void prepend(T value);
 
-        void Insert(string value, int index);
+        void insert(T value, int index);
 
-        void Remove(int index);
+        void remove(int index);
 
-        void Clear();
+        void clear();
     }
 }

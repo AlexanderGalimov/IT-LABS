@@ -1,8 +1,9 @@
 ﻿using System;
+using System.Collections.ObjectModel;
 
 namespace Task1.models
 {
-    public class LinkedList<T> : IList<T>
+    public class LinkedList<T> : ObservableCollection<T>, IList<T>
     {
         private ListNode<T> head { get; set; }
         private ListNode<T> tail { get; set; }
@@ -34,7 +35,6 @@ namespace Task1.models
 
         public void append(T value)
         {
-
             var newNode = new ListNode<T>(value);
 
             if (isEmpty())
@@ -47,9 +47,8 @@ namespace Task1.models
                 tail.next = newNode;
                 tail = newNode;
             }
-
+            base.Add(value);
             length++;
-
         }
 
         public void clear()
@@ -58,6 +57,8 @@ namespace Task1.models
             tail = null;
 
             length = 0;
+
+            base.Clear();
         }
 
         public T get(int index)
@@ -86,7 +87,6 @@ namespace Task1.models
 
         public void insert(T value, int index)
         {
-
             if (index < 0 || index > length)
             {
                 throw new IndexOutOfRangeException();
@@ -95,6 +95,7 @@ namespace Task1.models
             if (index == 0)
             {
                 prepend(value);
+                return;
             }
 
             var currentNode = head;
@@ -114,13 +115,14 @@ namespace Task1.models
                     }
 
                     length++;
+
+                    base.Insert(index, value);
+                    return;
                 }
 
                 currentNode = currentNode.next;
                 currentIndex++;
             }
-
-
         }
 
         public void prepend(T value)
@@ -139,11 +141,12 @@ namespace Task1.models
             }
 
             length++;
+            base.InsertItem(0, value);
         }
 
         public void remove(int index)
         {
-            if (index < 0 || index >= length)
+            if (index < 0 || index >= length || length == 0)
             {
                 throw new IndexOutOfRangeException();
             }
@@ -155,6 +158,11 @@ namespace Task1.models
                 {
                     tail = null;
                 }
+
+                length--;
+
+                base.RemoveAt(index);
+                return;
             }
             else
             {
@@ -175,9 +183,13 @@ namespace Task1.models
                 {
                     tail = currentNode;
                 }
-            }
 
-            length--;
+                length--;
+
+                base.RemoveAt(index);
+                return;
+            }
         }
     }
 }
+

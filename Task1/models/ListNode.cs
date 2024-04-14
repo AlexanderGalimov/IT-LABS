@@ -8,12 +8,14 @@
             this.next = next;
         }
 
-        public T data {
-            get; set; 
+        public T data
+        {
+            get; set;
         }
 
-        public ListNode<T> next {
-            get; set; 
+        public ListNode<T> next
+        {
+            get; set;
         }
 
         public override string ToString()

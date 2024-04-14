@@ -15,15 +15,14 @@
         </Grid.RowDefinitions>
 
         <TextBlock Text="Введите значение элемента:" Grid.Row="4" Margin="0,0,0,40" Grid.RowSpan="2"/>
-        <TextBox x:Name="txtInput" Grid.Row="4" Margin="160,0,0,40" Grid.RowSpan="2"/>
+        <TextBox Text="{Binding NewItem, UpdateSourceTrigger=PropertyChanged}" TextWrapping="Wrap" Grid.Row="4" Margin="160,0,0,40" Grid.RowSpan="2"/>
 
-        <Button Content="Добавить" Click="btnAppend_Click" Grid.Row="5" Margin="14,24,196,277" Grid.RowSpan="3" Background="#FF3AE94B"/>
-        <Button Content="Вставить по индексу" Click="btnInsert_Click" Grid.Row="7" Margin="14,113,196,157" Background="#FF7C76F4"/>
-        <TextBox x:Name="txtIndexInsert" Grid.Row="7" Margin="209,113,135,157"/>
-        <TextBox x:Name="txtIndexRemove" Grid.Row="7" Margin="209,174,135,96"/>
-        <Button Content="Удалить элемент по индексу" Click="btnRemove_Click" Grid.Row="7" Margin="14,174,196,96" Width="190" Background="#FFC944E2"/>
-        <Button Content="Очистить список" Click="btnClear_Click" Grid.Row="7" Margin="14,54,196,218" Background="#FFFF1515"/>
-
-        <ListBox x:Name="listBox" Grid.Row="5" Margin="270,24,10,10" Grid.RowSpan="3" />
+        <Button Content="Добавить" Command="{Binding AppendCommand}" Grid.Row="5" Margin="14,24,196,277" Grid.RowSpan="3" Background="#FF3AE94B"/>
+        <Button Content="Вставить по индексу" Command="{Binding InsertCommand}" Grid.Row="7" Margin="14,113,196,157" Background="#FF7C76F4"/>
+        <TextBox Text="{Binding InsertIndex, UpdateSourceTrigger=PropertyChanged}" TextWrapping="Wrap" Grid.Row="7" Margin="209,113,135,157"/>
+        <TextBox Text="{Binding DeleteIndex, UpdateSourceTrigger=PropertyChanged}" TextWrapping="Wrap" Grid.Row="7" Margin="209,174,135,96"/>
+        <Button Content="Удалить элемент по индексу" Command="{Binding RemoveCommand}" Grid.Row="7" Margin="14,174,196,96" Width="190" Background="#FFC944E2"/>
+        <Button Content="Очистить список" Command="{Binding ClearCommand}" Grid.Row="7" Margin="14,54,196,218" Background="#FFFF1515"/>
+        <ListBox ItemsSource ="{Binding Items}" Grid.Row="5" Margin="270,24,10,10" Grid.RowSpan="3" IsSynchronizedWithCurrentItem="False"/>
     </Grid>
 </Window>

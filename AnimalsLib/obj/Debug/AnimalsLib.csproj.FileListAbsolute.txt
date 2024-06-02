@@ -1,0 +1,6 @@
+C:\Users\Александр\OneDrive\Рабочий стол\шарпы\IT-LABS\AnimalsLib\bin\Debug\AnimalsLib.dll
+C:\Users\Александр\OneDrive\Рабочий стол\шарпы\IT-LABS\AnimalsLib\bin\Debug\AnimalsLib.pdb
+C:\Users\Александр\OneDrive\Рабочий стол\шарпы\IT-LABS\AnimalsLib\obj\Debug\AnimalsLib.csproj.AssemblyReference.cache
+C:\Users\Александр\OneDrive\Рабочий стол\шарпы\IT-LABS\AnimalsLib\obj\Debug\AnimalsLib.csproj.CoreCompileInputs.cache
+C:\Users\Александр\OneDrive\Рабочий стол\шарпы\IT-LABS\AnimalsLib\obj\Debug\AnimalsLib.dll
+C:\Users\Александр\OneDrive\Рабочий стол\шарпы\IT-LABS\AnimalsLib\obj\Debug\AnimalsLib.pdb
